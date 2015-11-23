@@ -1,0 +1,38 @@
+<head>
+<title>Mobile First</title>
+</head>
+<body>
+<header>
+<h1>Blog</h1>
+</header>
+<div class="content" role="main">
+<article class="mainarticle">
+<h2>Article title</h2>
+        <picture>    
+    <source srcset="http://s24.postimg.org/s8w37114l/sunset.jpg">
+    <img class="mainarticleimg" srcset=""http://s24.postimg.org/s8w37114l/sunset.jpg" alt="Beautiful sunset">
+</picture>
+<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras
+justo odio, dapibus ac facilisis in, egestas eget quam. Vivamus sagittis lacus
+vel augue laoreet rutrum faucibus dolor auctor. Etiam porta sem malesuada
+magna mollis euismod. Cras mattis consectetur purus sit amet fermentum. Duis
+mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio
+sem nec elit. Vestibulum id ligula porta felis euismod semper.</p>
+<p>
+Dit is een faketekst. Alles wat hier staat is slechts om een indruk te geven van het grafische effect van tekst op deze plek. Wat u hier leest is een voorbeeldtekst. Deze wordt later vervangen door de uiteindelijke tekst, die nu nog niet bekend is. De faketekst is dus een tekst die eigenlijk nergens over gaat. Het grappige is, dat mensen deze toch vaak lezen. Zelfs als men weet dat het om een faketekst gaat, lezen ze toch door. Zoals u dus nu gedaan heeft.</p>
+</article>
+</div>
+
+<aside>
+<h2>Related Articles</h2>
+<nav>
+<ul>
+<li><a href="#">Article item 1</a></li>
+<li><a href="#">Article item 2</a></li>
+<li><a href="#">Article item 3</a></li>
+</ul>
+</nav>
+</aside>
+</div>
+</body>
+</html>

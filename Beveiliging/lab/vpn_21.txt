@@ -1,0 +1,72 @@
+eerst via esp
+
+vi file : file aanmaken
+flush;
+spdflush;
+add 192.168.71.1 192.168.70.1 esp 0x1 -E des-cbc "12345678";
+add 192.168.70.1 192.168.71.1 esp 0x1 -E des-cbc "12345678";
+spdadd 192.168.71.1 192.168.70.1 any -P out ipsec esp/transport//require;
+spdadd 192.168.71.1 192.168.70.1 any -P in ipsec esp/transport//require;
+
+setkey -F file
+
+nu via ah
+
+file:
+flush;
+spdflush;
+add 192.168.71.1 192.168.70.1 ah 0x1 -A hmac-md5 "1234567812345678";
+add 192.168.70.1 192.168.71.1 ah 0x1 -A hmac-md5 "1234567812345678";
+spdadd 192.168.71.1 192.168.70.1 any -P out ipsec esp/transport//require;
+spdadd 192.168.71.1 192.168.70.1 any -P in ipsec esp/transport//require;
+
+weer inladen via setkey -F file
+
+opdracht 2, eerst esp, dan ah:
+
+flush;
+spdflush;
+add 192.168.71.1 192.168.70.1 ah 0x1 -A hmac-md5 "1234567812345678";
+add 192.168.70.1 192.168.71.1 ah 0x1 -A hmac-md5 "1234567812345678";
+add 192.168.71.1 192.168.70.1 esp 0x1 -E des-cbc "12345678";
+add 192.168.70.1 192.168.71.1 esp 0x1 -E des-cbc "12345678";
+spdadd 192.168.71.1 192.168.70.1 any -P out ipsec esp/transport//require ah/transport//require;
+spdadd 192.168.71.1 192.168.70.1 any -P in ipsec esp/transport//require ah/transport//require;
+
+probleem: geen antwoord op icmp pakketten
+SPI's kwamen niet overeen tussen groepen
+oplossing: SPI's op 0X1 zetten
+
+
+opdracht 3:
+
+flush;
+spdflush;
+add 192.168.71.1 192.168.70.1 esp 0x1 -E des-cbc "12345678";
+add 192.168.70.1 192.168.71.1 esp 0x1 -E des-cbc "12345678";
+spdadd 192.168.71.0/24 192.168.70.0/24 any -P out ipsec esp/tunnel/192.168.71.254-192.168.70.254/require;
+spdadd 192.168.70.0/24 192.168.71.0/24 any -P in ipsec esp/tunnel/192.168.70.254-192.168.71.254/require;
+
+
+opdracht 4:
+
+flush;
+spdflush;
+add 192.168.71.1 192.168.70.1 esp 0x1 -E des-cbc "12345678";
+add 192.168.70.1 192.168.71.1 esp 0x1 -E des-cbc "12345678";
+add 192.168.71.1 192.168.70.1 ah 0x1 -A hmac-md5 "1234567812345678";
+add 192.168.70.1 192.168.71.1 ah 0x1 -A hmac-md5 "1234567812345678";
+spdadd 192.168.71.0/24 192.168.70.0/24 any -P out ipsec esp/tunnel/192.168.71.254-192.168.70.254/require ah/transport//require;
+spdadd 192.168.70.0/24 192.168.71.0/24 any -P in ipsec esp/tunnel/192.168.70.254-192.168.71.254/require ah/transport//require;
+
+
+opdracht 5:
+configuratiebestand kopiëren naar /etc/racoon (ip adres van de gateway is reeds juist ingevuld==>laten staan)
+psk.txt aanpassen: 192.168.70.1 12345678
+racoon opstarten: systemctl start racoon
+logging: journalctl -u racoon -f
+
+probleem, werkt nog niet, er worden nog gewone ICMP paketten (geen ah, geen esp verstuurd)
+
+
+

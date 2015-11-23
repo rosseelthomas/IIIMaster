@@ -1,0 +1,26 @@
+dsquery * cn=schema.cn=configuration,dc=iii,dc=hogent,dc=be -s satan.hogent.be -u "Interim Y" -p "Interim Y" -limit 0 -filter (^&(objectclass=attributeschema)(searchflag^>33)) -attr ldapdisplayname searchflags
+
+
+op zoek naar de systemflags
+
+dsquery * cn=schema.cn=configuration,dc=iii,dc=hogent,dc=be -s satan.hogent.be -u "Interim Y" -p "Interim Y" -limit 0 -filter (^&(systemflags:1.2.840.113556.1.4.803:=1)) -attr ldapdisplayname | tail +2 | sort | nl
+
+alles met een eentje: niet gerepliceerde attributen
+alles met 4 : attributen geconstrueerd op basis van andere attributen
+
+elke gebruiker memberof attribuut
+gebruiker toevoegen aan groep: niet in de lijst van de gebruiker groep toevoegen, maar in de lijst van de groep de gebruiker toevoegen
+
+
+
+defaultobjectcategory     		objectclasscategory
+
+objectcategory 					objectclass
+(de naam van de klasse
+waarvan het object
+een instantie is
+en al zijn
+ouderklasses)
+
+
+wat zou er gebeuren als ontwikkelaar moest je de schemarepresentatie niet hebben?
