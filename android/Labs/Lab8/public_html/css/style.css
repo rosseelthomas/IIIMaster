@@ -22,3 +22,22 @@ body {
     margin-right: auto;
     display: block;
 }
+
+.input-group  {
+    width : 100%;
+}
+
+@media screen and (max-width: 992px) {
+    #header {
+        display : none;
+    }
+    #mobile {
+        display : inline;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    #mobile {
+        display : none;
+    }
+}

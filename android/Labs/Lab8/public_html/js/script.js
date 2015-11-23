@@ -9,6 +9,11 @@ $(document).ready(function () {
         }
         addItem({"item": item, "deadline": date});
     });
+    
+    $("#mobAdd").on("click", function () {
+        $("#mobile").append("Arnaud is gay <br />");
+    });
+    
 });
 
 
@@ -16,7 +21,7 @@ $(document).ready(function () {
 function addItem(item) {
     items.push(item);
 
-    var div = $("<div class=\"panel panel-default col-lg-2\">");
+    var div = $("<div class=\"panel panel-default col-md-2 col-md-3\">");
     var panel = $("<div class=\"panel-body\">");
     var h3 = $("<h3>");
     var p = $("<p>");

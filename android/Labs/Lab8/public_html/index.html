@@ -13,25 +13,48 @@ and open the template in the editor.
         <link rel="stylesheet" href="css/style.css"/>
     </head>
     <body>
-        <div class="container">
-            <div class="row">
-                <div class="input-group col-lg-12">
-                    <div  class="input-group">
-                        <span class="input-group-addon">Do</span>
-                        <input id="txtItem" type="text" class="form-control" placeholder="something" />
-                        <span class="input-group-addon">before</span>
-                        <input id="dtItem" type="datetime-local" class="form-control" />
-                        <span class="input-group-btn">
-                            <button id="btnAdd" class="btn btn-primary" type="button">Add</button>
-                        </span>
-                    </div>
+        <div  class="container">
+            
+            <div id="mobile" class="row">
+                <div class=" col-md-2">
+                    <button id="mobAdd" class="btn btn-primary" type="button">+</button>
+
                 </div>
             </div>
-            <hr/>
+            
+            
+            <div id="header" class="row">
 
-            <div class="row" id="items">
+
+                <div class="inp col-md-5">
+                <div class="  input-group">
+                    <span class="input-group-addon">Do</span>
+                    <input id="txtItem" type="text" class="form-control " placeholder="something" />
+                </div>
+                </div>
+
+                
+                <div class="inp col-md-5">
+                <div class=" input-group">
+                    <span class="input-group-addon">before</span>
+                    <input id="dtItem" type="datetime-local" class="form-control" />
+                </div>
+                </div>
+
+
+                <div class=" col-md-2">
+                    <button id="btnAdd" class="btn btn-primary" type="button">Add</button>
+
+                </div>
+
             </div>
         </div>
+
+        <hr/>
+
+        <div class="row" id="items">
+        </div>
+
 
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
