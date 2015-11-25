@@ -1,0 +1,11 @@
+satan:
+thuis:
+LDAP://satan.hogent.be/CN=SATAN,OU=Domain Controllers,DC=iii,DC=hogent,DC=be
+school:
+LDAP://CN=SATAN,OU=Domain Controllers,DC=iii,DC=hogent,DC=be
+
+Belial:
+thuis:
+LDAP://satan.hogent.be/CN=BELIAL,OU=Domain Controllers,DC=iii,DC=hogent,DC=be
+school:
+LDAP://CN=BELIAL,OU=Domain Controllers,DC=iii,DC=hogent,DC=be
