@@ -1,0 +1,73 @@
+Thomas Rosseel
+
+1. yum install pure-ftpd om ftp server te installeren
+==> gebruiker toevoegen 
+	useradd tiwi
+	passwd tiwi
+
+flushen met iptables -F
+iptables -A INPUT -p tcp --dport ftp -j DROP
+
+pasop hoofdlettergevoelig (eerst input in lowercase geschreven, werkte niet)
+
+
+
+loopback werkt standaard
+er moet een extra regel gezet worden voor 127.0.0.1 alsook voor het publieke ip-adres (en dus via dns) van je toestel
+iptables -I INPUT -p tcp --dport ftp -s 127.0.0.1 -j ACCEPT
+iptables -I INPUT -p tcp --dport ftp -s 192.168.71.2 -j ACCEPT
+
+3. zelfde regels toevoegen, maar nu voor --dport http en --dport telnet
+
+4.
+-m multiport --dports ftp,http,telnet toevoegen
+
+bv. 
+iptables -I INPUT -p tcp -m multiport --dports ftp,http,telnet -s 127.0.0.1 -j ACCEPT
+
+==================
+8.
+iptables -F
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+=>heeft het gewenste effect, ssh direct niet meer toegankelijk
+
+9.
+iptables -F
+iptables -A INPUT -p tcp --sport http -s www.tiwi.be -j ACCEPT
+iptables -A OUTPUT -p tcp --dport http -d www.tiwi.be -j ACCEPT
+
+maar niet genoeg, dns kan niet opgevraagd worden, dus 2 regels invoegen
+
+iptables -A INPUT -p udp --sport domain -s 192.168.71.1 -j ACCEPT
+iptables -A OUTPUT -p udp --dport domain -d 192.168.71.1 -j ACCEPT
+
+10.
+
+de 2 http regels wijzigen naar:
+iptables -A INPUT -p tcp --dport http -j ACCEPT
+iptables -A OUTPUT -p tcp --sport http -j ACCEPT
+
+
+11.
+2 regels toevoegen voor 20 en 21, ftp gebruiken in active mode opdat die deze poorten zou gebruiken
+iptables -A INPUT -p tcp --dport ftp -j ACCEPT
+iptables -A OUTPUT -p tcp --sport ftp -j ACCEPT
+iptables -A INPUT -p tcp --dport 20 -j ACCEPT
+iptables -A OUTPUT -p tcp --sport 20 -j ACCEPT
+
+12.
+6 regels door 2 vervangen
+
+iptables -A INPUT -p tcp -m multiport --dports http,ftp,20 -j ACCEPT
+iptables -A OUTPUT -p tcp -m multiport --sporst http,ftp,20 -j ACCEPT
+
+
+13.
+iptables -A OUTPUT -p icmp -j ACCEPT
+iptables -A INPUT -p icmp --icmp-type 0 -j ACCEPT
+
+14.
+iptables -A INPUT -p tcp --sport https -s intranet.tiwi.ugent.be -j ACCEPT
+iptables -A OUTPUT -p tcp --dport https -d intranet.tiwi.ugen.be -j ACCEPT
+
