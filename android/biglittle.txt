@@ -1,0 +1,36 @@
+biglittle = multicore cpu bestaat niet allemaal uit gelijke cores
+een aantal big cores + little cores
+niet alle workload op een toestel is een gelijk
+de ene keer kan je gerust met een little core overweg
+
+betere cpu, verbuikt meer energie
+little cores voor background services (pollen naar email...), niet processor/energie intensief
+
+hoe ga je nu bepalen welke taak/proc/app op welke core uitvoeren?
+heilige graal beslist dit
+
+global task scheduling:
+elke taak kan op elke cpu uitgerold worden
+
+systeem start op, van zodra de thread meer cpu nodig heeft => promoveren naar big cpu
+daarna terug schalen, kan aggressief (<= kwinten, nvdr)
+
+"zijn filmpke werkt precies niet"
+"nee, goed, altijd dezelfde miserie, soit je moet er thuis maar es naar kijken" (runtime migratie ene naar andere thread)
+
+verschillende usecases van processor gebruik
+	mogelijk korte termijn erboven gaan als je daarna maar weer niets doet
+
+migreren tussen verschillende soorten cpu's
+
+versch types workload:
+	zeer responsief piekbelasting genereren
+	8 core cpu, zware taak, meeste cores waren gewoon niets aan het doen
+
+maximum sustained performance:
+	wat is de maximum limiet?
+	niet boven de temperatuurlimiet gaan!
+	dankzij big little kan dit
+	moest je alles schedulen op een klassieke cpu, geraak je boven deze T limiet, door dit te gaan schalen, geraak je onder deze limiet
+
+	
