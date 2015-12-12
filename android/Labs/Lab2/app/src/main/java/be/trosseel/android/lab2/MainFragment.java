@@ -22,6 +22,8 @@ import android.widget.TextView;
 public class MainFragment extends ListFragment {
 
 
+
+int i;
     public MainFragment() {
         // Required empty public constructor
     }
@@ -37,6 +39,12 @@ public class MainFragment extends ListFragment {
         setListAdapter(arr);
 
         Log.i("lifecycle-fragment", "createview");
+        if(savedInstanceState != null && savedInstanceState.containsKey("index")){
+
+            int index = savedInstanceState.getInt("index");
+            startdetail(index);
+            savedInstanceState.clear();
+        }
         return v;
     }
 
@@ -88,14 +96,27 @@ public class MainFragment extends ListFragment {
         Log.i("lifecycle-fragment", "attach");
     }
 
+
+
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
+        startdetail(position);
+        i=position;
+    }
 
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("index",i);
+    }
+
+    private void startdetail(int index){
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
             DetailFragment d = new DetailFragment();
             Bundle b = new Bundle();
-            b.putInt("index",position);
+            b.putInt("index",index);
             d.setArguments(b);
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
@@ -105,7 +126,7 @@ public class MainFragment extends ListFragment {
             transaction.commit();
         }else{
             Intent intent = new Intent(getActivity(), DetailActivity.class);
-            intent.putExtra("index", position);
+            intent.putExtra("index", index);
             startActivity(intent);
         }
     }

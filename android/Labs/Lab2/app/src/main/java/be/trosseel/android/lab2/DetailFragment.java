@@ -13,7 +13,7 @@ import android.widget.TextView;
  * A simple {@link Fragment} subclass.
  */
 public class DetailFragment extends Fragment {
-
+    private int index;
 
     public DetailFragment() {
         // Required empty public constructor
@@ -25,14 +25,26 @@ public class DetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_detail, container, false);
-        int index = getArguments().getInt("index");
+
+
+
+        return v;
+    }
+
+    @Override
+    public void onViewCreated(View v, Bundle savedInstanceState) {
+        super.onViewCreated(v, savedInstanceState);
+
+
+            index = getArguments().getInt("index");
+
+
         String name = getResources().getStringArray(R.array.superheroes_names)[index];
         String history = getResources().getStringArray(R.array.superheroes_history)[index];
 
         ((TextView)v.findViewById(R.id.txtName)).setText(name);
         ((TextView)v.findViewById(R.id.txtHistory)).setText(history);
 
-        return v;
     }
 
 
