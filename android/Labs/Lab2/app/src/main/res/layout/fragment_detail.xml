@@ -1,0 +1,34 @@
+<!--
+    This fragment contains a ScrollView as the root ViewGroup with one vertically
+    oriented LinearLayout. The LinearLayout contains two TextViews, one for the name and one for
+    the history of our superhero.
+    -->
+
+<ScrollView
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:id="@+id/txtName"
+
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtHistory"/>
+
+    </LinearLayout>
+
+
+</ScrollView>
+
