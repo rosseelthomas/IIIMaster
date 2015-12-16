@@ -4,11 +4,19 @@ block content
   h1= title
 
 
-  div(id="header") AWESOME CHATSERVER
-  div(id="chat") CHAT
-  div(id="inputbox")
-    table
-      tr
-        td naam typen
-        td text typen
-        td verzenden
+  .container
+    div(id="header") 
+    .row
+      .col-md-8#chat
+
+
+
+      .col-md-4.list-group#users
+
+
+    .row
+      form(onsubmit="return fsub();")
+        .col-md-8 tekst:&nbsp;
+          input(id="txt" type="text")
+        .col-md-4
+          button(id="send" type="submit" class="btn btn-default") verzenden

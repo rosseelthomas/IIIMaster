@@ -4,4 +4,11 @@
 
     <!-- TODO: Add the be.ugent.oomt.labo5.GameView surfaceview to this viewgroup. -->
 
+    <be.ugent.oomt.labo5.GameView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:keepScreenOn="true"
+
+        android:id="@+id/gv"/>
+
 </LinearLayout>

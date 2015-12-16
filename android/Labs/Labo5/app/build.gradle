@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "be.ugent.oomt.labo5"
-        minSdkVersion 1
+        minSdkVersion 9
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
